@@ -1,3 +1,6 @@
+Ana Rita Tavanez
+Functional Genomics and Metabolism
+
 TODO: Add more to the title of your project here
 
 # LearnR:
