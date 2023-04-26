@@ -15,7 +15,7 @@ library(tidyverse)
 
 #this will be used to test out git
 
-#token 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
+#token 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
 
 <<<<<<< HEAD
 #example of commit
