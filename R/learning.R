@@ -24,4 +24,8 @@ library(tidyverse)
 #example of a conflict happening
 >>>>>>> 4a5dc2d05cc68fd8f1e96d8fc4295cd428dd2998
 
+<<<<<<< HEAD
 #Ana
+=======
+#Anna
+>>>>>>> 6152ee38f213d6660d8c5fb73fc3467b2712372a
