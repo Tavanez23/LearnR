@@ -2,6 +2,9 @@ Ana Rita Tavanez
 Functional Genomics and Metabolism
 
 synchronizing with GitHub
+push
+
+Added this sentence locally
 
 TODO: Add more to the title of your project here
 
