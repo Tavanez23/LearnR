@@ -109,3 +109,26 @@ nhanes_modified <- nhanes_small %>% # Specifying dataset
 
 
 nhanes_modified
+
+
+# Creating summary statistics
+#most functions dont work with missing values --> we need to tell the
+#function to ignore the missing values
+nhanes_small %>%
+    summarise(max_bmi = max(bmi, na.rm = TRUE), min_bmi = min(bmi, na.rm = TRUE))
+#na.rm --> to remove the NA
+
+nhanes_small %>% #filter the data before spliting, to avoid NA
+    filter(!is.na(diabetes)) %>%
+#is.na checks if the argument is what we put there, otherwise tells us is false
+    #is.na(NA) -> true ; !is.na(NA) --> false
+    group_by(diabetes) %>%
+    summarise(mean_age = mean(age, na.remove = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE))
+
+# Saving data
+
+readr::write_csv(nhanes_small, here::here("data/nhanes_small.csv"))
+
+
+
