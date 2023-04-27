@@ -132,3 +132,12 @@ readr::write_csv(nhanes_small, here::here("data/nhanes_small.csv"))
 
 
 #token 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
+# when token/push is not working
+#> gitcreds::gitcreds_set()
+
+
+#? Enter password or token: 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
+#-> Adding new credentials...
+#-> Removing credentials from cache...
+#-> Done.
+
