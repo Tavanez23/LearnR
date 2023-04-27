@@ -63,4 +63,16 @@ nhanes_small %>%
     "Mean BMI" = mean_bmi
   ) %>%
   knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
+
+#images should be add outside the code chuncks
+#image folder should be relative to where we have our quarto files
+
 ```
+
+
+
+Beigeing of adipocytes in @fig-beigeing-of-adipocytes
+
+![adipocytes](images/adipocytes.png){#fig-beigeing-of-adipocytes width="50%" height="50%"}
+
+
