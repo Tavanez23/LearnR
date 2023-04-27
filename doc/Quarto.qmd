@@ -9,15 +9,58 @@ editor: visual
 
 #R will load r setup first - smart to load the libraries
 
-```{r}
-2+2
-```
-
 ```{r setup}
+#| message: false
+#| warning: false
+
+# we can tell the R chunck what we want/dont want to be shown after render
+
 library(tidyverse)
 library(NHANES)
 nhanes_small <- read_csv(here::here("data/nhanes_small.csv"))
+```
 
+```{r}
+nhanes_small
+```
+## Table of results
 
+```{r mean-age-bmi-table}
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  group_by(diabetes, education) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  knitr::kable(caption = "Mean values of Age and BMI for education and diabetes status.")
+```
 
+```{r prettier-table}
+#| echo: false
+
+nhanes_small %>%
+  filter(!is.na(diabetes), !is.na(education)) %>%
+  group_by(diabetes, education) %>%
+  summarise(
+    mean_age = mean(age, na.rm = TRUE),
+    mean_bmi = mean(bmi, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  mutate(
+    # Task 2a.
+    mean_age = round(mean_age, 1),
+    mean_bmi = round(mean_bmi, 1),
+    # Task 2b.
+    education = str_to_sentence(education)
+  ) %>%
+  rename(
+    # Task 3.
+    "Diabetes Status" = diabetes,
+    "Education" = education,
+    "Mean Age" = mean_age,
+    "Mean BMI" = mean_bmi
+  ) %>%
+  knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
 ```
