@@ -64,9 +64,8 @@ nhanes_small %>%
   ) %>%
   knitr::kable(caption = "Mean values of Age and BMI for each education and diabetes status.")
 
-#images should be add outside the code chuncks
-#image folder should be relative to where we have our quarto files
-
+# images should be add outside the code chuncks
+# image folder should be relative to where we have our quarto files
 ```
 
 
@@ -76,3 +75,76 @@ Beigeing of adipocytes in @fig-beigeing-of-adipocytes
 ![adipocytes](images/adipocytes.png){#fig-beigeing-of-adipocytes width="50%" height="50%"}
 
 
+
+## Visualizing data
+
+```{r}
+# Create histogram for BMI
+ggplot(nhanes_small, aes(x = bmi)) +
+  geom_histogram()
+```
+```{r}
+# Create histogram for BMI, removing the missing values
+
+ggplot(nhanes_small, aes(x = bmi)) +
+  geom_histogram(na.rm = TRUE)
+```
+BMI distribution in NHANES dataset visualised in @fig-bmi-histogram
+
+```{r}
+#| fig-cap: "Distribution of BMI"
+#| label: fig-bmi-histogram
+
+nhanes_small %>%
+  filter(bmi <= 60) %>%
+  ggplot(aes(x = bmi)) +
+  geom_histogram(na.rm = TRUE)
+```
+
+
+
+```{r}
+# Create count barplot for education
+ggplot(nhanes_small, aes(x = education)) +
+  geom_bar()
+```
+
+```{r}
+# create count barplot for diabetes status
+ggplot(nhanes_small, aes(x = diabetes)) +
+  geom_bar()
+```
+
+```{r}
+# remove NA  - removing the rows that have NA values
+
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes)) +
+  geom_bar()
+```
+
+```{r}
+nhanes_small %>%
+  filter(!is.na(education)) %>%
+  ggplot(aes(x = education)) +
+  geom_bar()
+```
+```{r}
+#| label: fig-diabetes-education
+#| fig-cap: "Counts of diabetes and education in NHANES"
+#| fig-subcap:
+#| - "Number of those with or without diabetes."
+#| - "Number of those with different educational status"
+#| layout-ncol: 2
+
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  ggplot(aes(x = diabetes)) +
+  geom_bar()
+
+nhanes_small %>%
+  filter(!is.na(education)) %>%
+  ggplot(aes(x = education)) +
+  geom_bar()
+```
